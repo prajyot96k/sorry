@@ -85,12 +85,46 @@ function RunawayButton({ messages }) {
 
   const dodge = () => {
     const pad = 24
+    const gap = 16
     const w = window.innerWidth
-    const rect = ref.current?.getBoundingClientRect()
-    const bw = rect?.width ?? 140
+    const h = window.innerHeight
+    const el = ref.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const bw = rect.width
+    const bh = rect.height
+    const currentX = pos.x
+    const currentY = pos.y
+    const originLeft = rect.left - currentX
+    const originTop = rect.top - currentY
+
+    const yesEl = document.querySelector('.yes-btn')
+    const yesRect = yesEl?.getBoundingClientRect()
+
+    const overlaps = (nx, ny) => {
+      const left = originLeft + nx
+      const top = originTop + ny
+      const right = left + bw
+      const bottom = top + bh
+      if (left < pad || right > w - pad) return true
+      if (top < pad || bottom > h - pad) return true
+      if (!yesRect) return false
+      return !(
+        right + gap < yesRect.left ||
+        left > yesRect.right + gap ||
+        bottom + gap < yesRect.top ||
+        top > yesRect.bottom + gap
+      )
+    }
+
     const maxX = Math.max(40, (w - bw) / 2 - pad)
-    const nx = (Math.random() * 2 - 1) * maxX
-    const ny = (Math.random() * 2 - 1) * 120 - 20
+    let nx = 0
+    let ny = 0
+    for (let i = 0; i < 30; i++) {
+      nx = (Math.random() * 2 - 1) * maxX
+      ny = (Math.random() * 2 - 1) * 140 - 10
+      if (!overlaps(nx, ny)) break
+    }
     setPos({ x: nx, y: ny })
     setIdx((i) => Math.min(i + 1, messages.length - 1))
   }
