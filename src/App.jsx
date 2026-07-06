@@ -78,50 +78,46 @@ function FloatingHearts({ count = 24 }) {
   )
 }
 
-function ShyButton({ onCatch }) {
+function RunawayButton({ messages }) {
   const [pos, setPos] = useState({ x: 0, y: 0 })
-  const [dodges, setDodges] = useState(0)
+  const [idx, setIdx] = useState(0)
   const ref = useRef(null)
 
   const dodge = () => {
-    if (dodges >= 5) return
-    const pad = 40
+    const pad = 24
     const w = window.innerWidth
-    const h = window.innerHeight
     const rect = ref.current?.getBoundingClientRect()
-    const bw = rect?.width ?? 160
-    const bh = rect?.height ?? 60
-    const nx = Math.random() * (w - bw - pad * 2) - w / 2 + bw / 2 + pad
-    const ny = Math.random() * 240 - 120
+    const bw = rect?.width ?? 140
+    const maxX = Math.max(40, (w - bw) / 2 - pad)
+    const nx = (Math.random() * 2 - 1) * maxX
+    const ny = (Math.random() * 2 - 1) * 120 - 20
     setPos({ x: nx, y: ny })
-    setDodges((d) => d + 1)
+    setIdx((i) => Math.min(i + 1, messages.length - 1))
   }
 
   return (
     <button
       ref={ref}
       type="button"
-      className="yes-btn"
+      className="no-btn runaway"
       style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
-      onMouseEnter={dodges < 5 ? dodge : undefined}
-      onFocus={dodges < 5 ? dodge : undefined}
-      onClick={onCatch}
+      onMouseEnter={dodge}
+      onClick={dodge}
     >
-      {dodges >= 5 ? 'Kardiya maf 💜' : 'Kardiya maf 💜'}
+      {messages[idx]}
     </button>
   )
 }
 
 export default function App() {
   const [forgiven, setForgiven] = useState(false)
-  const [noBtnCount, setNoBtnCount] = useState(0)
 
   const noMessages = [
-    'No',
+    'Nahii',
     'Please?',
     'Mittu please?',
     'Meri malkin please?',
-    "Shopping karwaunga naa",
+    'Shopping karwaunga naa',
     'Ham makeup bhi lenge ab to man jao 🥺',
   ]
 
@@ -141,14 +137,14 @@ export default function App() {
             </div>
 
             <div className="actions">
-              <ShyButton onCatch={() => setForgiven(true)} />
               <button
                 type="button"
-                className="no-btn"
-                onClick={() => setNoBtnCount((c) => Math.min(c + 1, noMessages.length - 1))}
+                className="yes-btn"
+                onClick={() => setForgiven(true)}
               >
-                {noMessages[noBtnCount]}
+                Kardiya maf 💜
               </button>
+              <RunawayButton messages={noMessages} />
             </div>
           </>
         ) : (
