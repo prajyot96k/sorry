@@ -24,6 +24,7 @@ const WISH_LINES = [
   'Hmm pata hai pareshan karta hu tumhe bohot, rulata bhi hu bohot',
   'Bohot ganda hu mai but kaisa bhi hu but tumhara hu',
   'Aaj ka din bas tumhara — khush raho, hasti raho and hamesha meri raho 😘',
+  'Meri umra bhi tumhe mile, meri zindagi bhi tumhari ho, meri har khushi tumhare naam ho 💖',
   'Aur haan, cake mai se bada piece mera 😋',
   'Love you forever, Ishuuuu 💜',
 ]
@@ -278,7 +279,7 @@ export default function App() {
   }
 
   const bear = {
-    dark: { mood: 'shh', arms: 'carry', x: 26, walking: true, bubble: 'Shhh... 🤫' },
+    dark: { mood: 'shh', arms: 'carry', x: 26, walking: true, bubble: 'Utho meri pyari ....' },
     lights: { mood: 'happy', arms: 'carry', x: 32, bubble: 'SURPRISE!! 🎉' },
     sing: { mood: 'happy', arms: 'carry', x: 32, bubble: 'Happy Birthday meri jaan 🎂' },
     wish: { mood: 'happy', arms: 'cheer', x: 22, bubble: 'Wish maango 🙏' },
@@ -384,7 +385,7 @@ export default function App() {
             <span className="accent">{LOVER_NAME}</span> 🎂
           </h1>
         ) : (
-          <h1 className="title title--dim">psst... 🤫</h1>
+          <h1 className="title title--dim"></h1>
         )}
       </header>
 
@@ -418,11 +419,6 @@ export default function App() {
         {step === 'wish' && (
           <button type="button" className="blow-btn" onClick={() => setStepIdx(STEPS.length - 1)}>
             Wish maango &amp; phoonk maaro 🌬️🕯️
-          </button>
-        )}
-        {stepIdx < 3 && (
-          <button type="button" className="skip-btn" onClick={() => setStepIdx(3)}>
-            Skip ›
           </button>
         )}
         {step === 'celebrate' && (
