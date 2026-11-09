@@ -17,10 +17,13 @@ const STEPS = [
 ]
 
 const WISH_LINES = [
-  `Happy Birthday meri ${LOVER_NAME} 🎂`,
+  `Happy Birthday meri pyari ${LOVER_NAME} 🎂`,
   'Tum meri life ki sabse pyari gift ho 💝',
   'Har din tumhari smile dekhne ke liye jeeta hu',
-  'Aaj ka din bas tumhara — khush raho, hasti raho',
+  'Tum kush hote ho to mai khush hota hu, hamesha hasti rehna',
+  'Hmm pata hai pareshan karta hu tumhe bohot, rulata bhi hu bohot',
+  'Bohot ganda hu mai but kaisa bhi hu but tumhara hu',
+  'Aaj ka din bas tumhara — khush raho, hasti raho and hamesha meri raho 😘',
   'Aur haan, cake mai se bada piece mera 😋',
   'Love you forever, Ishuuuu 💜',
 ]
@@ -279,7 +282,7 @@ export default function App() {
     lights: { mood: 'happy', arms: 'carry', x: 32, bubble: 'SURPRISE!! 🎉' },
     sing: { mood: 'happy', arms: 'carry', x: 32, bubble: 'Happy Birthday meri jaan 🎂' },
     wish: { mood: 'happy', arms: 'cheer', x: 22, bubble: 'Wish maango 🙏' },
-    celebrate: { mood: 'happy', arms: 'cheer', x: 36, bubble: 'Love you ❤️' },
+    celebrate: { mood: 'happy', arms: 'cheer', x: 36, bubble: 'Love you ishuuuu ❤️' },
   }[step]
 
   const panda = {
